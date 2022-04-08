@@ -40,6 +40,10 @@ final class FormChain
     /**@phpstan-var WeakMap<Player, list<Form>> */
     private static WeakMap $formChains;
 
+    /**
+     * @internal
+     * @see AdvancedForm::register()
+     */
     public static function init(): void
     {
         self::$formChains = new WeakMap();
