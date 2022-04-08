@@ -120,6 +120,33 @@ abstract class CustomForm extends BaseForm
         return $this;
     }
 
+    public function clearHighlights(): self
+    {
+        foreach ($this->getElements() as $element) {
+            $element->setHighlight(false);
+        }
+        return $this;
+    }
+
+    public function clearElementMessages(): self
+    {
+        foreach ($this->getElements() as $element) {
+            $element->setMessage(null);
+        }
+        return $this;
+    }
+
+    /**
+     * Clear all fillDefaults, highlights, elementMessages
+     */
+    public function clearStates(): self
+    {
+        $this->restoreDefaults();
+        $this->clearHighlights();
+        $this->clearElementMessages();
+        return $this;
+    }
+
     /**
      * @return Element[]
      * @phpstan-return array<string, Element>
@@ -241,12 +268,6 @@ abstract class CustomForm extends BaseForm
                 throw new FormValidationException("Element \"$name\" validation failed: " . $exception->getMessage(), previous: $exception);
             }
             $responseArray[$element->getName()] = $value;
-        }
-
-        //TODO: Is it correct to do this implicitly?
-        foreach ($this->getElements() as $element) {
-            $element->setHighlight(false);
-            $element->setMessage(null);
         }
 
         $response = new CustomFormResponse($this, $responseArray);
