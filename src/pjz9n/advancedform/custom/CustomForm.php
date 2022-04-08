@@ -107,7 +107,6 @@ abstract class CustomForm extends BaseForm
     /**
      * Fill the default value with the response
      * This is useful when resend a form
-     * NOTE: It will be automatically reset when the form submit
      */
     public function fillDefaults(CustomFormResponse $response): self
     {
