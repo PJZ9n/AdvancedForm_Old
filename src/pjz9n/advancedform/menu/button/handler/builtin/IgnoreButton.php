@@ -24,7 +24,6 @@ declare(strict_types=1);
 namespace pjz9n\advancedform\menu\button\handler\builtin;
 
 use pjz9n\advancedform\menu\button\handler\HandlerButton;
-use pjz9n\advancedform\menu\button\icon\MenuButtonIcon;
 use pjz9n\advancedform\menu\button\MenuButton;
 use pocketmine\form\Form;
 use pocketmine\player\Player;
@@ -35,11 +34,6 @@ use pocketmine\player\Player;
  */
 class IgnoreButton extends MenuButton implements HandlerButton
 {
-    final public static function create(string $text, ?MenuButtonIcon $icon = null): self
-    {
-        return new self($text, $icon, null, null);
-    }
-
     public function handle(Form $form, Player $player): bool
     {
         return true;//Do not process: MenuForm::handleSubmit()

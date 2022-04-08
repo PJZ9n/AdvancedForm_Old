@@ -35,20 +35,6 @@ class CallbackModalForm extends ModalForm
 {
     /**
      * @phpstan-param Closure(Player, bool): void $handleChoice
-     */
-    public static function create(
-        string  $title,
-        string  $content,
-        Closure $handleChoice,
-        string  $button1Text = "gui.yes",
-        string  $button2Text = "gui.no",
-    ): self
-    {
-        return new self($title, $content, $handleChoice, $button1Text, $button2Text);
-    }
-
-    /**
-     * @phpstan-param Closure(Player, bool): void $handleChoice
      *
      * @see CallbackModalForm::create()
      */

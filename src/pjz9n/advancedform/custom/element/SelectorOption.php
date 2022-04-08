@@ -25,15 +25,10 @@ namespace pjz9n\advancedform\custom\element;
 
 class SelectorOption
 {
-    public static function create(string $text, mixed $value = null): self
-    {
-        return new self($text, $value);
-    }
-
     /**
      * @param mixed|null $value
      */
-    public function __construct(private string $text, private mixed $value)
+    public function __construct(private string $text, private mixed $value = null)
     {
     }
 

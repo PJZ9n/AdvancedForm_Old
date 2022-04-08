@@ -30,25 +30,13 @@ use function is_int;
 
 class Slider extends Element
 {
-    public static function create(
-        string $name,
-        string $text,
-        float  $min,
-        float  $max,
-        float  $step,
-        ?float $default = null,
-    ): self
-    {
-        return new self($name, $text, $min, $max, $step, $default);
-    }
-
     public function __construct(
         string         $name,
         string         $text,
         private float  $min,
         private float  $max,
         private float  $step,
-        private ?float $default,
+        private ?float $default = null,
     )
     {
         parent::__construct($name, $text);

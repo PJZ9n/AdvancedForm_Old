@@ -35,21 +35,8 @@ class BackToggle extends Toggle implements HandlerElement
     /**
      * @param string[]|null $backTo
      * @phpstan-param list<class-string<Form>>|null $backTo
-     *
-     * @see FormUtils::back() documentation of $backTo
      */
-    public static function createBack(string $name, string $text, array $backTo, bool $default = false): self
-    {
-        return new self($name, $text, $default, $backTo);
-    }
-
-    /**
-     * @param string[]|null $backTo
-     * @phpstan-param list<class-string<Form>>|null $backTo
-     *
-     * @see BackToggle::create()
-     */
-    public function __construct(string $name, string $text, bool $default, private array $backTo)
+    public function __construct(string $name, string $text, private array $backTo, bool $default = false)
     {
         parent::__construct($name, $text, $default);
     }

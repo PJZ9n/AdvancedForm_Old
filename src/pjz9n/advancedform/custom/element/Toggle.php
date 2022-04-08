@@ -28,12 +28,7 @@ use function is_bool;
 
 class Toggle extends Element
 {
-    public static function create(string $name, string $text, bool $default = false): self
-    {
-        return new self($name, $text, $default);
-    }
-
-    public function __construct(string $name, string $text, private bool $default)
+    public function __construct(string $name, string $text, private bool $default = false)
     {
         parent::__construct($name, $text);
     }

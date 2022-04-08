@@ -29,16 +29,11 @@ use function is_string;
 
 class Input extends Element
 {
-    public static function create(string $name, string $text, string $placeholder = "", string $defualt = ""): self
-    {
-        return new self($name, $text, $placeholder, $defualt);
-    }
-
     public function __construct(
         string         $name,
         string         $text,
-        private string $placeholder,
-        private string $default,
+        private string $placeholder = "",
+        private string $default = "",
     )
     {
         parent::__construct($name, $text);

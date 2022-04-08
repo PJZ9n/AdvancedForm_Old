@@ -34,19 +34,6 @@ class BackButton extends MenuButton implements HandlerButton
     /**
      * @param string[]|null $backTo
      * @phpstan-param list<class-string<Form>>|null $backTo
-     *
-     * @see FormUtils::back() documentation of $backTo
-     */
-    final public static function create(string $text, ?array $backTo, ?MenuButtonIcon $icon = null): self
-    {
-        return new self($text, $backTo, $icon, null, null);
-    }
-
-    /**
-     * @param string[]|null $backTo
-     * @phpstan-param list<class-string<Form>>|null $backTo
-     *
-     * @see BackButton::create()
      */
     public function __construct(string $text, private ?array $backTo, ?MenuButtonIcon $icon, mixed $value, ?string $name)
     {

@@ -27,15 +27,6 @@ use function array_map;
 
 class StepSlider extends Selector
 {
-    /**
-     * @param SelectorOption[] $options
-     * @phpstan-param list<SelectorOption> $options
-     */
-    public static function create(string $name, string $text, array $options = [], ?int $default = null): self
-    {
-        return new self($name, $text, $options, $default);
-    }
-
     protected function getNetworkType(): string
     {
         return ElementTypes::STEP_SLIDER;

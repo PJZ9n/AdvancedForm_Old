@@ -28,11 +28,6 @@ use function gettype;
 
 class Label extends Element
 {
-    public static function create(string $name, string $text): self
-    {
-        return new self($name, $text);
-    }
-
     public function validate(mixed $value): void
     {
         if ($value !== null) {

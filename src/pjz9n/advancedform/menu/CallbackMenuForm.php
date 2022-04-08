@@ -37,30 +37,14 @@ class CallbackMenuForm extends MenuForm
     /**
      * @phpstan-param Closure(Player, MenuButton): void $handleSelect
      * @phpstan-param Closure(Player): void $handleClose
-     */
-    public static function create(
-        string   $title,
-        string   $content,
-        Closure  $handleSelect,
-        ?Closure $handleClose = null,
-    ): self
-    {
-        return new self($title, $content, $handleSelect, $handleClose ?? null);
-    }
-
-    /**
-     * @phpstan-param Closure(Player, MenuButton): void $handleSelect
-     * @phpstan-param Closure(Player): void $handleClose
      * @param MenuButton[] $buttons
      * @phpstan-param list<MenuButton> $buttons
-     *
-     * @see CallbackMenuForm::create()
      */
     public function __construct(
         string           $title,
         string           $content,
         private Closure  $handleSelect,
-        private ?Closure $handleClose,
+        private ?Closure $handleClose = null,
         array            $buttons = [],
     )
     {

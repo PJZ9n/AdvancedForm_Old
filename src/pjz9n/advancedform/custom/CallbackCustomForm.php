@@ -38,26 +38,13 @@ class CallbackCustomForm extends CustomForm
     /**
      * @phpstan-param Closure(Player, CustomFormResponse): void $handleSubmit
      * @phpstan-param Closure(Player): void $handleClose
-     */
-    public static function create(
-        string   $title,
-        Closure  $handleSubmit,
-        ?Closure $handleClose = null,
-    ): self
-    {
-        return new self($title, $handleSubmit, $handleClose);
-    }
-
-    /**
-     * @phpstan-param Closure(Player, CustomFormResponse): void $handleSubmit
-     * @phpstan-param Closure(Player): void $handleClose
      * @param Element[]
      * @phpstan-param array<mixed, Element>
      */
     public function __construct(
         string           $title,
         private Closure  $handleSubmit,
-        private ?Closure $handleClose,
+        private ?Closure $handleClose = null,
         array            $elements = [],
     )
     {

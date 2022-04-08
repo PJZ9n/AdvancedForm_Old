@@ -38,7 +38,7 @@ abstract class Selector extends Element
      * @param SelectorOption[] $options
      * @phpstan-param list<SelectorOption> $options
      */
-    public function __construct(string $name, string $text, private array $options, private ?int $default)
+    public function __construct(string $name, string $text, private array $options = [], private ?int $default = null)
     {
         parent::__construct($name, $text);
         $this->options = array_values($this->options);
