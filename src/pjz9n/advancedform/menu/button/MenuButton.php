@@ -51,8 +51,6 @@ class MenuButton implements JsonSerializable
     private ?int $index = null;
 
     /**
-     * @param mixed|null $value
-     *
      * @see MenuButton::create()
      * @see MenuButton::createNamed()
      */
@@ -107,17 +105,11 @@ class MenuButton implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return mixed|null
-     */
     public function getValue(): mixed
     {
         return $this->value;
     }
 
-    /**
-     * @param mixed|null $value
-     */
     public function setValue(mixed $value): self
     {
         $this->value = $value;
