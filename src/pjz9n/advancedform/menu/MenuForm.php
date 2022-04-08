@@ -41,6 +41,8 @@ use function count;
 use function gettype;
 use function implode;
 use function is_int;
+use function json_decode;
+use function json_encode;
 use function str_repeat;
 
 /**
@@ -171,9 +173,11 @@ abstract class MenuForm extends BaseForm
         if ($messagesString !== "") {
             $messagesString .= str_repeat(TextFormat::EOL, 2);
         }
-        return [
+        $data = json_encode([
             "content" => $messagesString . $this->getContent(),
             "buttons" => $this->getButtons(),
-        ];
+        ]);
+        $this->clearMessages();
+        return json_decode($data, true);
     }
 }

@@ -48,6 +48,8 @@ use function gettype;
 use function implode;
 use function is_array;
 use function is_string;
+use function json_decode;
+use function json_encode;
 use function uniqid;
 
 /**
@@ -316,9 +318,11 @@ abstract class CustomForm extends BaseForm
             }, $this->getElements());
         }
 
-        return [
+        $data = json_encode([
             "content" => array_merge($messageLabels, Utils::arrayToList($elements)),
-        ];
+        ]);
+        $this->clearStates();
+        return json_decode($data, true);
     }
 
     /**

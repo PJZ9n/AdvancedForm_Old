@@ -33,6 +33,8 @@ use function array_map;
 use function gettype;
 use function implode;
 use function is_bool;
+use function json_decode;
+use function json_encode;
 use function str_repeat;
 
 /**
@@ -110,10 +112,12 @@ abstract class ModalForm extends BaseForm
         if ($messagesString !== "") {
             $messagesString .= str_repeat(TextFormat::EOL, 2);
         }
-        return [
+        $data = json_encode([
             "content" => $messagesString . $this->getContent(),
             "button1" => $this->getButton1Text(),
             "button2" => $this->getButton2Text(),
-        ];
+        ]);
+        $this->clearMessages();
+        return json_decode($data, true);
     }
 }
