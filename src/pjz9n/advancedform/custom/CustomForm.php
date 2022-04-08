@@ -239,7 +239,6 @@ abstract class CustomForm extends BaseForm
         }
 
         //TODO: Is it correct to do this implicitly?
-        $this->clearMessages();
         foreach ($this->getElements() as $element) {
             $element->setHighlight(false);
         }

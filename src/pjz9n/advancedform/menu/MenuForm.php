@@ -157,9 +157,6 @@ abstract class MenuForm extends BaseForm
             return;
         }
 
-        //TODO: Is it correct to do this implicitly?
-        $this->clearMessages();
-
         $this->handleSelect($player, new MenuFormResponse($data, $selectedButton));
     }
 

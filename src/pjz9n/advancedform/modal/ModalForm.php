@@ -96,9 +96,6 @@ abstract class ModalForm extends BaseForm
             throw new FormValidationException("excepted bool, got " . gettype($data));
         }
 
-        //TODO: Is it correct to do this implicitly?
-        $this->clearMessages();
-
         $this->handleChoice($player, $data);
     }
 
