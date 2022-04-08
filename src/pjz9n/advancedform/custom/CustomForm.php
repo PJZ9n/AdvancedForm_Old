@@ -114,6 +114,12 @@ abstract class CustomForm extends BaseForm
         return $this;
     }
 
+    public function restoreDefaults(): self
+    {
+        $this->defaultResponse = null;
+        return $this;
+    }
+
     /**
      * @return Element[]
      * @phpstan-return array<string, Element>
@@ -242,7 +248,6 @@ abstract class CustomForm extends BaseForm
             $element->setHighlight(false);
             $element->setMessage(null);
         }
-        $this->defaultResponse = null;
 
         $response = new CustomFormResponse($this, $responseArray);
 
