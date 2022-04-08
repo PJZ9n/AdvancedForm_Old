@@ -29,36 +29,12 @@ use pjz9n\advancedform\menu\button\icon\MenuButtonIcon;
 
 class MenuButton implements JsonSerializable
 {
-    final public static function normal(
-        string          $text,
-        ?MenuButtonIcon $icon = null,
-        mixed           $value = null,
-    ): self
-    {
-        return new self($text, $icon, $value, null);
-    }
-
-    final public static function named(
-        string          $name,
-        string          $text,
-        ?MenuButtonIcon $icon = null,
-        mixed           $value = null,
-    ): self
-    {
-        return new self($text, $icon, $value, $name);
-    }
-
     private ?int $index = null;
 
-    /**
-     * @see MenuButton::create()
-     * @see MenuButton::createNamed()
-     */
     public function __construct(
         private string          $text,
-        private ?MenuButtonIcon $icon,
-        private mixed           $value,
-        private ?string         $name,
+        private ?MenuButtonIcon $icon = null,
+        private mixed           $value = null,
     )
     {
     }
@@ -113,25 +89,6 @@ class MenuButton implements JsonSerializable
     public function setValue(mixed $value): self
     {
         $this->value = $value;
-        return $this;
-    }
-
-    public function hasName(): bool
-    {
-        return $this->name !== null;
-    }
-
-    public function getName(): string
-    {
-        if ($this->name === null) {
-            throw new LogicException("This button is not a named button");
-        }
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
         return $this;
     }
 
