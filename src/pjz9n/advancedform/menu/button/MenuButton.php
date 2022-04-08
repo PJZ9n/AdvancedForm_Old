@@ -24,39 +24,16 @@ declare(strict_types=1);
 namespace pjz9n\advancedform\menu\button;
 
 use JsonSerializable;
-use LogicException;
 use pjz9n\advancedform\menu\button\icon\MenuButtonIcon;
 
 class MenuButton implements JsonSerializable
 {
-    private ?int $index = null;
-
     public function __construct(
         private string          $text,
         private ?MenuButtonIcon $icon = null,
         private mixed           $value = null,
     )
     {
-    }
-
-    /**
-     * Returns the index of the button
-     * This is useful when you want to identify which button was pressed in a form response
-     */
-    public function getIndex(): int
-    {
-        if ($this->index === null) {
-            throw new LogicException("This button has not been added");
-        }
-        return $this->index;
-    }
-
-    /**
-     * @internal
-     */
-    public function setIndex(int $index): void
-    {
-        $this->index = $index;
     }
 
     public function getText(): string

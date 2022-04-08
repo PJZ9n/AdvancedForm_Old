@@ -28,11 +28,11 @@ use pjz9n\advancedform\BaseForm;
 use pjz9n\advancedform\FormTypes;
 use pjz9n\advancedform\menu\button\handler\HandlerButton;
 use pjz9n\advancedform\menu\button\MenuButton;
+use pjz9n\advancedform\menu\response\MenuFormResponse;
 use pjz9n\advancedform\MessagesTrait;
 use pocketmine\form\FormValidationException;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
-use pocketmine\utils\Utils;
 use function array_map;
 use function array_merge;
 use function array_search;
@@ -55,7 +55,7 @@ abstract class MenuForm extends BaseForm
      * NOTE: Not called when the form is closed
      * @see MenuForm::handleClose()
      */
-    abstract protected function handleSelect(Player $player, MenuButton $button): void;
+    abstract protected function handleSelect(Player $player, MenuFormResponse $response): void;
 
     /**
      * @param MenuButton[] $buttons
@@ -68,7 +68,7 @@ abstract class MenuForm extends BaseForm
     )
     {
         parent::__construct($title);
-        $this->buttons = array_values(Utils::cloneObjectArray($this->buttons));
+        $this->buttons = array_values($this->buttons);
     }
 
     public function getContent(): string
@@ -97,15 +97,13 @@ abstract class MenuForm extends BaseForm
      */
     public function setButtons(array $buttons): self
     {
-        $this->buttons = array_values(Utils::cloneObjectArray($buttons));
-        $this->resetButtonIndex();
+        $this->buttons = array_values($buttons);
         return $this;
     }
 
     public function addButton(MenuButton $button): self
     {
-        $this->buttons[] = clone $button;
-        $this->resetButtonIndex();
+        $this->buttons[] = $button;
         return $this;
     }
 
@@ -115,8 +113,7 @@ abstract class MenuForm extends BaseForm
      */
     public function addButtons(array $buttons): self
     {
-        $this->buttons = array_merge($this->buttons, array_values(Utils::cloneObjectArray($buttons)));
-        $this->resetButtonIndex();
+        $this->buttons = array_merge($this->buttons, array_values($buttons));
         return $this;
     }
 
@@ -128,7 +125,6 @@ abstract class MenuForm extends BaseForm
 
         unset($this->buttons[$key]);
         $this->buttons = array_values($this->buttons);
-        $this->resetButtonIndex();
 
         return $this;
     }
@@ -164,7 +160,7 @@ abstract class MenuForm extends BaseForm
         //TODO: Is it correct to do this implicitly?
         $this->clearMessages();
 
-        $this->handleSelect($player, $selectedButton);
+        $this->handleSelect($player, new MenuFormResponse($data, $selectedButton));
     }
 
     final protected function getNetworkType(): string
@@ -182,12 +178,5 @@ abstract class MenuForm extends BaseForm
             "content" => $messagesString . $this->getContent(),
             "buttons" => $this->getButtons(),
         ];
-    }
-
-    private function resetButtonIndex(): void
-    {
-        foreach ($this->buttons as $index => $button) {
-            $button->setIndex($index);
-        }
     }
 }
