@@ -23,7 +23,9 @@ declare(strict_types=1);
 
 namespace pjz9n\advancedform\menu\response;
 
+use LogicException;
 use pjz9n\advancedform\menu\button\MenuButton;
+use pjz9n\advancedform\menu\button\NamedMenuButton;
 
 class MenuFormResponse
 {
@@ -38,6 +40,14 @@ class MenuFormResponse
 
     public function getButton(): MenuButton
     {
+        return $this->button;
+    }
+
+    public function getNamedButton(): NamedMenuButton
+    {
+        if (!($this->button instanceof NamedMenuButton)) {
+            throw new LogicException("Button does not have a name");
+        }
         return $this->button;
     }
 
