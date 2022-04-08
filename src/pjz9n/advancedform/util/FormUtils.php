@@ -24,8 +24,8 @@ declare(strict_types=1);
 namespace pjz9n\advancedform\util;
 
 use pjz9n\advancedform\AdvancedForm;
-use pjz9n\advancedform\chain\FormChainListener;
 use pjz9n\advancedform\chain\FormChain;
+use pjz9n\advancedform\chain\FormChainListener;
 use pocketmine\form\Form;
 use pocketmine\player\Player;
 use function implode;

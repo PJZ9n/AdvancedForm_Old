@@ -25,8 +25,8 @@ namespace pjz9n\advancedform;
 
 use Logger;
 use LogicException;
-use pjz9n\advancedform\chain\FormChainListener;
 use pjz9n\advancedform\chain\FormChain;
+use pjz9n\advancedform\chain\FormChainListener;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginLogger;
 use pocketmine\Server;
