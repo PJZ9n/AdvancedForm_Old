@@ -241,9 +241,9 @@ abstract class CustomForm extends BaseForm
         //TODO: Is it correct to do this implicitly?
         foreach ($this->getElements() as $element) {
             $element->setHighlight(false);
+            $element->setMessage(null);
         }
         $this->defaultResponse = null;
-        $element->setMessage(null);
 
         $response = new CustomFormResponse($this, $responseArray);
 
