@@ -29,13 +29,14 @@ use DaveRandom\CallbackValidator\CallbackType;
 use DaveRandom\CallbackValidator\ParameterType;
 use DaveRandom\CallbackValidator\ReturnType;
 use pjz9n\advancedform\menu\button\MenuButton;
+use pjz9n\advancedform\menu\response\MenuFormResponse;
 use pocketmine\player\Player;
 use pocketmine\utils\Utils;
 
 class CallbackMenuForm extends MenuForm
 {
     /**
-     * @phpstan-param Closure(Player, MenuButton): void $handleSelect
+     * @phpstan-param Closure(Player, MenuFormResponse): void $handleSelect
      * @phpstan-param Closure(Player): void $handleClose
      * @param MenuButton[] $buttons
      * @phpstan-param list<MenuButton> $buttons
@@ -51,7 +52,7 @@ class CallbackMenuForm extends MenuForm
         Utils::validateCallableSignature(new CallbackType(
             new ReturnType(BuiltInTypes::VOID),
             new ParameterType("player", Player::class),
-            new ParameterType("button", MenuButton::class)),
+            new ParameterType("response", MenuFormResponse::class)),
             $this->handleSelect,
         );
         if ($this->handleClose !== null) {
@@ -64,9 +65,9 @@ class CallbackMenuForm extends MenuForm
         parent::__construct($title, $content, $buttons);
     }
 
-    protected function handleSelect(Player $player, MenuButton $button): void
+    protected function handleSelect(Player $player, MenuFormResponse $response): void
     {
-        ($this->handleSelect)($player, $button);
+        ($this->handleSelect)($player, $response);
     }
 
     protected function handleClose(Player $player): void
