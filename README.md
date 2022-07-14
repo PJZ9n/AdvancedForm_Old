@@ -1,6 +1,6 @@
-# AdvancedForm
+# AdvancedForm_old
 
-# Work in progress: This is under development and is not perfect. The API is not backwards compatible.
+# MOVED: [AdvancedForm](https://github.com/PJZ9n/AdvancedForm)
 
 ## Overview
 
